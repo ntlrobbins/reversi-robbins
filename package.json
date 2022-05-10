@@ -1,0 +1,24 @@
+{
+  "name": "reversi-robbins",
+  "version": "0.0.1",
+  "description": "This is a web version of the game reversi",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/ntlrobbins/reversi-robbins.git)"
+  },
+  "keywords": [
+    "reversi",
+    "hci"
+  ],
+  "author": "Natalie Robbins",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "node-static": "^0.7.11",
+    "socket.io": "^4.5.0"
+  }
+}
