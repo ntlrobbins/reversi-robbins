@@ -12,12 +12,14 @@ function getIRIParameterValue(requestedKey) {
 }
 
 let username = decodeURI(getIRIParameterValue('username'));
-if ((typeof username == 'undefined') || (username === null)){
+if ((typeof username == 'undefined') || (username === null)) {
 	username = "Anonymous_"+Math.floor(Math.random()*1000);
 }
 
-let chatRoom = 'Lobby';
-
+let chatRoom = decodeURI(getIRIParameterValue('game_id'));
+if ((typeof chatRoom == 'undefined') || (chatRoom === null) || (chatRoom === 'null')) {
+	chatRoom = "Lobby";
+}
 /* Set up the socket.io connection to the server */
 let socket = io();
 socket.on('log',function(array) {
@@ -71,6 +73,19 @@ $( () => {
 	request.username = username;
 	console.log('*** Client log message, sending \'join_room\' command: '+JSON.stringify(request));
 	socket.emit('join_room',request);
+
+$("#lobbyTitle").html(username + "'s Lobby");
+
+$('#chatMessage').keypress(function (e) {
+    let key = e.which;
+    if( key == 13){ //the enter key
+    $('button[id = chatButton]').click();
+    return false;
+
+    }
+  })
+
+
 });
 
 
