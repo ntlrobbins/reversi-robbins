@@ -9,6 +9,7 @@ function getIRIParameterValue(requestedKey) {
 			return value; 
 		}
 	}
+	return null;
 }
 
 let username = decodeURI(getIRIParameterValue('username'));
@@ -35,8 +36,12 @@ socket.on('join_room_response', (payload) =>{
 		console.log(payload.message);
 		return;
 	}
-	let newString = '<p class=\'join_room_response\'>'+payload.username+' joined the '+payload.room+'. (There are '+payload.count+' user in this room)</p>';
+	let newHTML = '<p class=\'join_room_response\'>'+payload.username+' joined the '+payload.room+'. (There are '+payload.count+' user in this room)</p>';
 	$('#messages').prepend(newString);
+	let newNode = $($newHTML);
+	newNode.hide();
+	$('#messages').prepend(newNode);
+	newNode.show("fade", 500);
 })
 
 function sendChatMessage() {
@@ -47,6 +52,7 @@ function sendChatMessage() {
 	request.message = $('#chatMessage').val();
 	console.log('*** Client log message, sending \'send_chat_message\' command: '+JSON.stringify(request));
 	socket.emit('send_chat_message',request);
+	$('#chatMessage').val("");
 }
 
 
@@ -59,8 +65,11 @@ socket.on('send_chat_message_response', (payload) =>{
 		console.log(payload.message);
 		return;
 	}
-	let newString = '<p class=\'chat_message\'><b>'+payload.username+'</b>: '+payload.message+'</p>';
-	$('#messages').prepend(newString);
+	let newHTML = '<p class=\'chat_message\'><b>'+payload.username+'</b>: '+payload.message+'</p>';
+	let newNode = $(newHTML);
+	newNode.hide();
+	$('#messages').prepend(newNode);
+	newNode.show("fade", 500);
 })
 
 
