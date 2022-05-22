@@ -79,7 +79,7 @@ nodeB.append('<h4>' +payload.username+ '</h4>');
 let nodeC = $("<div></div>");
 nodeC.addClass("col");
 nodeC.addClass("text-start");
-nodeC.addClass("socket_"+payload.socket_id");
+nodeC.addClass("socket_"+ payload.socket_id);
 let buttonC = makeInviteButton();
 nodeC.append(buttonC);
 
@@ -149,7 +149,7 @@ socket.on('send_chat_message_response', (payload) =>{
 	newNode.hide();
 	$('#messages').prepend(newNode);
 	newNode.show("fade", 500);
-})
+});
 
 
 

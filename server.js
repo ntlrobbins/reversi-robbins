@@ -3,10 +3,10 @@
 
 let static = require('node-static');
 
-/ * Set up the http server */
+/* Set up the http server */
 let http = require('http');
 
-/ * Assume that we are running on Heroku */
+/* Assume that we are running on Heroku */
 
 let port = process.env.PORT;
 
@@ -14,7 +14,7 @@ let directory = __dirname + '/public';
 
 /* If we aren't on Heroku, then we need to adjust our port and directory */
 
-if ((typeof port == 'undefinied') || ( port == null)){
+if ((typeof port == 'undefined') || ( port == null)){
 	port = 8080;
 	directory = './public';
 }
@@ -53,7 +53,7 @@ io.on('connection', (socket) => {
 			io.emit('log',['****\t'+item]);
 			console.log(item);
 
-		})
+		});
 	}
 
 	serverLog('a page connected to the server: '+socket.id);
@@ -131,7 +131,7 @@ socket.on('join_room', (payload) => {
 			players[socket.id] = {
 				username: username,
 				room: room
-			}
+			};
 			/* Announce to everyone that is in the room, who else is in the room */
 			for (const member of sockets) {
 				response = {
@@ -140,7 +140,7 @@ socket.on('join_room', (payload) => {
 					room: players[member.id].room,
 					username: players[member.id].username,
 					count: sockets.length
-				}
+				};
 			/* Tell everyone that a new user has joined the chat room */
 				io.of('/').to(room).emit('join_room_response',response);
 				serverLog('join_room succeeded', JSON.stringify(response));
