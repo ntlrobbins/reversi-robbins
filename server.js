@@ -153,7 +153,7 @@ socket.on('join_room', (payload) => {
 socket.on('disconnect', () => {
 		serverLog('a page disconnected from the server: ' + socket.id);
 		if((typeof players[socket.id] !='undefined') && (players[socket.id] !=null)) {
-			let playload = {
+			let payload = {
 				username: players[socket.id].username,
 				room: players[socket.id].room,
 				count: Object.keys(players).length - 1,
