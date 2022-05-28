@@ -185,8 +185,8 @@ socket.on('invite', (payload) => {
 
 		if ((typeof username == 'undefined') || (username === null) || (username === "")) {
 			response = {
-				response.result = 'fail';
-				message: 'the user that was invited does not have a name registered';
+				result = 'fail';
+				message: 'the user that was invited is no longer in the room';
 			};
 			socket.emit('invite_response',response);
 			serverLog('invite command failed', JSON.stringify(response));

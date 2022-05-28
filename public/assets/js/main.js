@@ -35,7 +35,7 @@ function makeInviteButton(socket_id) {
 		let payload = {
 			requested_user:socket_id
 		}
-		console.log('**** Client log message, sending \ 'invite\' command: ' + JSON.stringify(payload));
+		console.log('**** Client log message, sending \'invite\' command: ' + JSON.stringify(payload));
 		socket.emit('invite',payload);
 		}
 		);
