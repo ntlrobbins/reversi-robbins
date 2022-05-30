@@ -649,7 +649,6 @@ io.of('/').to(game_id).allSockets().then((sockets) => {
 })
 
 /* Check if the game is over */
-}
 
 let count = 0;
 for (let row = 0; row < 8; row++) {
@@ -659,14 +658,12 @@ for (let row = 0; row < 8; row++) {
 		}
 	}
 }
-
 if (count === 64) {
 	let payload = {
 		result: 'success',
 		game_id: game_id,
 		game: games[game_id],
 		who_won: 'everyone'
-
 	}
 	io.in(game_id).emit('game_over', payload);
 
@@ -675,7 +672,8 @@ if (count === 64) {
 		((id) => {
 			return (() => {
 				delete games[id];
-	})(game_id), 60 * 60 * 1000
+			});
+		})(game_id), 60 * 60 * 1000
 	);
 	}
 }
