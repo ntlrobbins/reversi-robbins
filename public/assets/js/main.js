@@ -190,7 +190,7 @@ $("#players").append(nodeA);
 nodeA.show("fade", 1000);
 
 	/* Announcing in the chat that someone has arrived */
-	let newHTML = '<p class = \'join_room_response\'>'+payload.username+' joined the '+payload.room+'.(There are '+payload.count+' users in the this room)</p>';
+	let newHTML = '<p class = \'join_room_response\'>'+payload.username+' joined th chatroom .(There are '+payload.count+' users in the this room)</p>';
 	/*$('#messages').prepend(newString); */
 	let newNode = $(newHTML);
 	newNode.hide();
@@ -263,7 +263,7 @@ let old_board = [
 
 	let my_color = "";
 
-socket.on('game_update', (payload) =>{
+socket.on('game_update', (payload) => {
 	if(( typeof payload == 'undefined') || (payload === null)){
 		console.log('Server did not send a payload');
 		return;
@@ -275,6 +275,7 @@ socket.on('game_update', (payload) =>{
 	let board = payload.game.board;
 	if (( typeof board == 'undefined') || (board === null)){
 		console.log('Server did not send a valid board to display');
+		return;
 	}
 	/* Update my color */
 	if (socket.id === payload.game.player_white.socket) {
@@ -296,7 +297,7 @@ socket.on('game_update', (payload) =>{
 let whitesum = 0;
 let blacksum = 0;
 
-	/* Animate all the changes to the board */
+	/* Animate the changes to the board */
 	for (let row = 0; row < 8; row++) {
 		for (let column = 0; column < 8; column++) {
 			if (board[row][column] === 'w') {
@@ -310,7 +311,7 @@ let blacksum = 0;
 			if (old_board[row][column] !== board[row][column]) {
 				let graphic = "";
 				let altTag = "";
-				if ((old_board[row][column] === '?') && (board[row][column] ===' ')) {
+				if ((old_board[row][column] === '?') && (board[row][column] === ' ')) {
 					graphic = "empty.gif";
 					altTag = "empty space";
 			}
@@ -376,7 +377,7 @@ let blacksum = 0;
 	$("#whitesum").html(whitesum);
 	$("#blackesum").html(blacksum);
 	old_board = board;
-});
+})
 
 
 socket.on('play_token_response', (payload) =>{

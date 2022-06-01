@@ -132,7 +132,7 @@ socket.on('join_room', (payload) => {
 					room: players[member.id].room,
 					username: players[member.id].username,
 					count: sockets.length
-				};
+				}
 			/* Tell everyone that a new user has joined the chat room */
 				io.of('/').to(room).emit('join_room_response',response);
 				serverLog('join_room succeeded', JSON.stringify(response));
@@ -591,7 +591,7 @@ io.of('/').to(game_id).allSockets().then((sockets) => {
 	const iterator = sockets[Symbol.iterator]();
 		if(sockets.size >= 1) {
 			let first = iterator.next().value;
-			if((games[game_id].player_white.socket != first) &&
+			if ((games[game_id].player_white.socket != first) &&
 				(games[game_id].player_black.socket != first)) {
 				/* Player does not have a color */
 				if(games[game_id].player_white.socket === "") {
