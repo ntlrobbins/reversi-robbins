@@ -584,10 +584,14 @@ function create_new_game() {
 	return new_game;
 }
 function send_game_update(socket, game_id, message) {
+	if ((typeof games[game_id] == 'undefined') || (games[game_id] === null)) {
+	 	console.log("No game exists with game_id:" + game_id + ". Making a new game for " +socket.id);
+		games[game_id] = create_new_game();
+	}
+
 /* Make sure that only 2 people are in the room */
 /* Assign this socket a color */
 io.of('/').to(game_id).allSockets().then((sockets) => {
-		
 	const iterator = sockets[Symbol.iterator]();
 		if(sockets.size >= 1) {
 			let first = iterator.next().value;
@@ -680,14 +684,8 @@ if (count === 64) {
 
 
 
+ /* Check to see if a game with a game_id exists */
 
-
-// /* Check to see if a game with a game_id exists */
-// if ((typeof games[game_id] == 'undefined') || (games[game_id] === null)) {
-// 	console.log("No game exists with game_id:" + game_id + ". Making a new game for " +socket.id);
-// 	games[game_id] = create_new_game();
-// }
-	
 
 
 
