@@ -375,7 +375,7 @@ let blacksum = 0;
 		}
 	}
 	$("#whitesum").html(whitesum);
-	$("#blackesum").html(blacksum);
+	$("#blacksum").html(blacksum);
 	old_board = board;
 })
 
