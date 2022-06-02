@@ -375,8 +375,12 @@ let blacksum = 0;
 			}
 			const t = Date.now();
 			$('#'+row+'_'+column).html('<img class="img-fluid" src="assets/images/'+graphic+'?time='+t+'" alt="'+altTag+'" />');
+			}
+			/* Set up interactivity */
 			$('#'+row+'_'+column).off('click');
-			if (board[row][column] === ' ') {
+			$('#'+row+'_'+column).removeClass('hovered_over');
+			if(payload.game.whose_turn === my_color) {
+				if(payload.game.legal_moves[row][column] === my_color.substr(0,1)) {
 				$('#'+row+'_'+column).addClass('hovered_over');
 				$('#'+row+'_'+column).click(((r,c) => {
 					return(() => {
@@ -387,15 +391,12 @@ let blacksum = 0;
 						};
 						console.log('**** Client log message, sending \'play_token\' command: ' + JSON.stringify(payload));
 						socket.emit('play_token', payload);
-						});
-					})(row, column));
-				}
-				else {
-					$('#'+row+'_'+column).removeClass('hovered_over');
+							});
+						})(row, column));
+					}
 				}
 			}
 		}
-	}
 	$("#whitesum").html(whitesum);
 	$("#blacksum").html(blacksum);
 	old_board = board;
