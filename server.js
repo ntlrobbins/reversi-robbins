@@ -837,10 +837,10 @@ for (let row = 0; row < 8; row++) {
 		if (games[game_id].legal_moves[row][column] !== ' ') {
 			legal_moves++;
 		}
-		if (games[game_id].board[row][column] !== 'w') {
+		if (games[game_id].board[row][column] === 'w') {
 			whitesum++;
 		}
-		if (games[game_id].board[row][column] !== 'b') {
+		if (games[game_id].board[row][column] === 'b') {
 			blacksum++;
 		}
 
@@ -859,7 +859,7 @@ if (legal_moves === 0) {
 		result: 'success',
 		game_id: game_id,
 		game: games[game_id],
-		who_won: 'winner'
+		who_won: winner
 	}
 	io.in(game_id).emit('game_over', payload);
 
