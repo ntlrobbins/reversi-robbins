@@ -718,19 +718,20 @@ function calculate_legal_moves(who,board) {
 	return legal_moves;
 }
 
+
 function flip_line(who,dr,dc,r,c,board) {
 
-	if (( r + dr < 0 ) || ( r + dr > 7)) {
+	if ((r + dr < 0 ) || (r + dr > 7)) {
 		return false;
 	}
-	if (( c + dc < 0 ) || ( c + dc > 7)) {
+	if ((c + dc < 0 ) || (c + dc > 7)) {
 		return false;
 	}
 	if (board[r+dr][c+dc] === ' '){
 		return false;
 	}
 	if (board[r+dr][c+dc] === who){
-		return false;
+		return true;
 	}
 	else {
 		if(flip_line(who,dr,dc,r+dr,c+dc,board)) {
@@ -744,18 +745,18 @@ function flip_line(who,dr,dc,r,c,board) {
 }
 
 function flip_tokens(who,row,column,board) {
-				flip_line(who,-1, -1, row, column, board);
-				flip_line(who,-1, 0, row, column, board);
-				flip_line(who,-1, 1, row, column, board);
+				flip_line(who, -1, -1, row, column, board);
+				flip_line(who, -1, 0, row, column, board);
+				flip_line(who, -1, 1, row, column, board);
 
-				flip_line(who,0, -1, row, column, board);
-				flip_line(who,0, 1, row, column, board);
+				flip_line(who, 0, -1, row, column, board);
+				flip_line(who, 0, 1, row, column, board);
 
-				flip_line(who,1, -1, row, column, board);
-				flip_line(who,1, 0, row, column, board);
-				flip_line(who,1, 1, row, column, board);
-
+				flip_line(who, 1, -1, row, column, board);
+				flip_line(who, 1, 0, row, column, board);
+				flip_line(who, 1, 1, row, column, board);
 }
+
 
 function send_game_update(socket, game_id, message) {
 	if ((typeof games[game_id] == 'undefined') || (games[game_id] === null)) {
