@@ -190,7 +190,7 @@ $("#players").append(nodeA);
 nodeA.show("fade", 1000);
 
 	/* Announcing in the chat that someone has arrived */
-	let newHTML = '<p class = \'join_room_response\'>'+payload.username+' joined th chatroom .(There are '+payload.count+' users in the this room)</p>';
+	let newHTML = '<p class = \'join_room_response\'>'+payload.username+' joined the chatroom .(There are '+payload.count+' users in the this room)</p>';
 	/*$('#messages').prepend(newString); */
 	let newNode = $(newHTML);
 	newNode.hide();
