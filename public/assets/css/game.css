@@ -1,5 +1,5 @@
   body {
-       background-color: rgb(85, 72, 160);
+       background-color: rgb(152, 133, 184);
       }
 
  .headerrow, #messagePane {
@@ -13,7 +13,7 @@
       .chat_message {
         font-size: 125%;
         margin:  1px 1px 1px 1px;
-        color: rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
       }
 
       table#game_board {
