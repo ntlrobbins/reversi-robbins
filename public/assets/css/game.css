@@ -1,13 +1,17 @@
   body {
-       background-color: rgb(152, 133, 184);
+       background-color: rgb(196, 174, 210);
       }
 
  .headerrow, #messagePane {
        background-color: rgb(59, 52, 126);
       }
 
+    #gameMessageTitle, #gameTitle {
+      color: rgb(255, 255, 255);
+    }
+
       .join_room_response, .left_room_response {
-        background-color: rgb(26, 34, 97);
+        background-color: rgb(255, 255, 255);
       }
 
       .chat_message {
